@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 07:13:02 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/08/03 22:11:45 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/08/11 08:53:06 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int main(int argc, char **argv)
 	(void)argv;
 	if (argc < 5 || argc > 6)
 	{
-		printf("WRONG.\n");
-		return (1);
+		print_error_with_code("philo", MSG_WRONG_AMNT_ARGS, 1);
+		return (print_error_with_code(NULL, MSG_USAGE_PHILO, 1));
 	}
-	printf("BLA BLA BLA BLA BLA BLA\n");
+	printf("\e[1;35mReady to perform!\e[0m\n");
 	return (0);
 }
