@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 07:13:44 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/08/11 21:02:25 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:34:55 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <stdbool.h>
 
 // <<<<<<<<<<<<<<<<<<<<< MACROS >>>>>>>>>>>>>>>>>>>>>
 
@@ -36,15 +37,38 @@
 
 // <<<<<<<<<<<<<<<<<<<<< STRUCTURES >>>>>>>>>>>>>>>>>>>>>
 
+struct s_philo;
+
+typedef struct s_sim_data
+{
+	int	num_of_philo;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	times_must_eat;
+
+	long long	start_time;
+	pthread_mutex_t	forks;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	stop_mutex;
+	bool	dead_flag;
+
+	struct philo	*philos;
+}	t_sim_data;
+
 typedef struct s_philo
 {
+	int	id;
+	int	meals_eaten;
+	long long last_meal_time;
 
+	pthread_t	thread;
+
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+
+	struct s_sim_data	sim;
 }	t_philo;
-
-typedef struct s_sim
-{
-
-}	t_sim;
 
 // <<<<<<<<<<<<<<<<<<<<< FUNCTIONS >>>>>>>>>>>>>>>>>>>>>
 
