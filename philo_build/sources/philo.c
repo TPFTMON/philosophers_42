@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 07:13:02 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/08/18 18:36:51 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/08/27 16:24:36 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(int argc, char **argv)
 {
-	t_sim_data	sim;
+	t_sim_data	*sim;
 
 	(void)argv;
 	if (argc < 5 || argc > 6)
@@ -23,7 +23,18 @@ int main(int argc, char **argv)
 		return (print_error_with_code(NULL, MSG_USAGE_PHILO, 1));
 	}
 	printf("\e[1;35mReady to perform!\e[0m\n");
-	init_sim_data(argc, argv, sim);
-	parse_imput(argc, argv);
+	init_sim_data(sim);
 	return (0);
 }
+
+// int main() {
+//     struct timeval tv;
+//     if (gettimeofday(&tv, NULL) == -1) {
+//         printf("gettimeofday failed\n");
+//         return 1;
+//     }
+
+//     long milliseconds = (tv.tv_sec * 1000L) + (tv.tv_usec / 1000L);
+//     printf("Current time in ms: %ld\n", milliseconds);
+//     return 0;
+// }
