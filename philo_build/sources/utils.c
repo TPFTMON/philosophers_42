@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 21:19:45 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/08/11 08:46:31 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:19:06 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+long long	get_current_ms(void)
+{
+	struct timeval tv;
+
+	if (gettimeofday(&tv, NULL) == -1)
+		print_error_with_code("philo", MSG_ERROR_NO_TIME, 1);
+	return (tv.tv_sec * 1000LL + tv.tv_usec * 1000LL);
+}
 
 // /*
 //  * Prints an error message to STDERR.

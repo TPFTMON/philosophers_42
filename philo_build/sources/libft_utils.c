@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 08:45:02 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/08/27 16:24:42 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:19:06 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,26 @@ int	print_error_with_code(char *object, char *msg, int error_code)
 		free(full_msg);
 	}
 	return (error_code);
+}
+
+int	ft_atoi(const char *str)
+{
+	int	index;
+	int	sign;
+	int	result;
+
+	index = 0;
+	while ((str[index] == 32) || (str[index] > 8 && str[index] < 14))
+		index++;
+	sign = 1;
+	if (str[index] == '-' || str[index] == '+')
+	{
+		if (str[index] == '-')
+			sign = -sign;
+		(index)++;
+	}
+	result = 0;
+	while (str[index] >= '0' && str[index] <= '9')
+		result = result * 10 + (str[index++] - '0');
+	return (result * sign);
 }

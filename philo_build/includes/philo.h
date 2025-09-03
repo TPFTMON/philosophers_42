@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 07:13:44 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/08/27 16:08:29 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/03 11:14:27 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@
 # include <stdbool.h>
 
 // <<<<<<<<<<<<<<<<<<<<< MACROS >>>>>>>>>>>>>>>>>>>>>
+
+// --- General ---
+# define SUCCESS 0
+# define FAIL 1
+
+// --- Exit Codes ---
+# define EXC_OK 0
+# define EXC_CRIT 1
+# define EXC_PARSING 2
 
 // --- File Descriptors ---
 # define STDIN_FD 0
@@ -74,11 +83,16 @@ typedef struct s_philo
 
 // <<<<<<<<<<<<<<<<<<<<< FUNCTIONS >>>>>>>>>>>>>>>>>>>>>
 
-// error.c:
+// parsing.c
+int	validate_input(int argc, char **argv);
 
 // libft_utils.c:
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 int	print_error_with_code(char *object, char *msg, int error_code);
+int	ft_atoi(const char *str);
+
+// utils.c
+long long	get_current_ms(void);
 
 #endif
