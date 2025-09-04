@@ -25,7 +25,7 @@ int	validate_input(int argc, char **argv)
 	while (argv[i])
 	{
 		if (ft_atoi(argv[i]) <= 0)
-			return (print_error_with_code("philo", "WRONG!\n", EXC_PARSING));
+			return (print_error_with_code("philo", "\e[1;31mWRONG!\e[0m\n", EXC_PARSING));
 		// printf("arg[%d]: %d\n", i, ft_atoi(argv[i]));
 		i++;
 	}

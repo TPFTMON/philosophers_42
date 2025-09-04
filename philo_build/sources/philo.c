@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 07:13:02 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/03 11:18:40 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/04 19:33:40 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 int main(int argc, char **argv)
 {
-	// t_sim_data	*sim;
+	t_sim_data	*sim;
 
 	if (validate_input(argc, argv) != SUCCESS)
 		return (EXC_PARSING);
-	printf("\e[1;35mReady to perform!\e[0m\n");
-	// init_sim_data(argc, argv, sim);
+	printf("\e[4;32mReady to init!\e[0m\n");
+	sim = init_sim_data(argc, argv);
+	if (!sim)
+		return (print_error_with_code("philo", MSG_ERROR_MEM, EXC_CRIT));
+	printf("\e[4;32mReady to start!\e[0m\n");
+	clear_simulation(sim);
+	printf("\e[4;32mSimulation has been cleaned up!\e[0m\n");
 	return (0);
 }
 
