@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 07:13:44 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/05 14:01:54 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:33:54 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@
 
 # define MSG_ERROR_MEM "\e[1;31mcritical error\e[0m: memory failure"
 # define MSG_ERROR_NO_TIME "\e[1;31mcritical error\e[0m: gettimeofday failed"
+
+//   status messages:
+# define FORK_MSG "has taken a fork"
+# define EAT_MSG "is eating"
+# define SLEEP_MSG "is sleeping"
+# define THINK_MSG "is thinking"
+# define DEAD_MSG "died"
 
 // --- Some Colors ---
 # define RESET "\033[0m"
@@ -90,6 +97,12 @@ typedef struct s_philo
 
 // <<<<<<<<<<<<<<<<<<<<< FUNCTIONS >>>>>>>>>>>>>>>>>>>>>
 
+// simulation.c
+
+// routine.c
+void					*philo_routine(void *arg);
+void					run_simulation(t_sim_data *sim);
+
 // cleanup.c
 void					clear_simulation(t_sim_data *sim);
 
@@ -108,6 +121,7 @@ int						ft_atoi(const char *str);
 
 // utils.c
 long long				get_current_ms(void);
+void					print_status(t_philo *philo, char *status);
 
 // testing.c
 void					print_simulation_state(t_sim_data *sim);

@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 21:19:45 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/03 11:19:06 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:16:25 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,20 @@ long long	get_current_ms(void)
 	if (gettimeofday(&tv, NULL) == -1)
 		print_error_with_code("philo", MSG_ERROR_NO_TIME, 1);
 	return (tv.tv_sec * 1000LL + tv.tv_usec * 1000LL);
+}
+
+void	print_status(t_philo *philo, char *status)
+{
+	long long	current_time;
+
+	pthread_mutex_lock(&philo->sim->print_mutex);
+
+	if (!philo->sim->dead_flag)
+	{
+		current_time = get_current_ms() - philo->sim->start_time;
+		printf("%lld %d %s\n", current_time, philo->id, status);
+	}
+	pthread_mutex_unlock(&philo->sim->print_mutex);
 }
 
 // /*

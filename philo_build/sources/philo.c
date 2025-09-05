@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 07:13:02 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/05 14:12:36 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/05 14:59:15 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 	printf(BOLD"\e[4;32mReady to start!\e[0m\n");
 	print_simulation_state(sim);
 
-	// philo_routine(sim);
+	run_simulation(sim);
 
 	clear_simulation(sim);
 	printf(BOLD"\e[4;32mSimulation has been cleaned up!\e[0m\n");
