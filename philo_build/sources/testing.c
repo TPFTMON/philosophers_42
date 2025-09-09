@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 18:12:37 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/05 13:41:33 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/09 15:04:47 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	print_simulation_state(t_sim_data *sim)
 		printf(CYAN " times_must_eat: " RESET "Not set\n");
 	printf("---------------------------------------------\n");
 	printf(CYAN " start_time:     " RESET "%lld\n", sim->start_time);
-	printf(CYAN " dead_flag:      " RESET "%s\n", sim->dead_flag ? "true (1)" : "false (0)");
+	printf(CYAN " stop_flag:      " RESET "%s\n", sim->stop_flag ? "true (1)" : "false (0)");
 	printf(CYAN " forks addr:     " RESET "%p\n", (void *)sim->forks);
 	printf(CYAN " philos addr:    " RESET "%p\n", (void *)sim->philos);
 	printf(BOLD GREEN "---------------------------------------------\n\n" RESET);
@@ -105,8 +105,8 @@ void	print_simulation_state(t_sim_data *sim)
 //            sim->num_of_philos, sim->time_to_die, sim->time_to_eat);
 //     printf("│ time_to_sleep: %6d ms   | times_must_eat: %6d   | start_time(ms): %12lld │\n",
 //            sim->time_to_sleep, sim->times_must_eat, (long long)sim->start_time);
-//     printf("│ dead_flag    : %6s   | forks addr    : %p                                     │\n",
-//            sim->dead_flag ? "true" : "false", (void *)sim->forks);
+//     printf("│ stop_flag    : %6s   | forks addr    : %p                                     │\n",
+//            sim->stop_flag ? "true" : "false", (void *)sim->forks);
 //     printf("└───────────────────────────────────────────────────────────────────────────────┘\n\n");
 
 //     printf("┌────┬────────────┬────────────┬────────────┬──────────────┬─────────────────────┐\n");

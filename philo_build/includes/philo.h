@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 07:13:44 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/05 17:33:54 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:14:38 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_sim_data
 	pthread_mutex_t		print_mutex;
 	pthread_mutex_t		stop_mutex;
 	long long			start_time;
-	bool				dead_flag;
+	bool				stop_flag;
 
 	struct s_philo		*philos;
 }						t_sim_data;
@@ -89,6 +89,7 @@ typedef struct s_philo
 
 	pthread_t			thread;
 
+	pthread_mutex_t		meal_mutex;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
 
@@ -98,10 +99,10 @@ typedef struct s_philo
 // <<<<<<<<<<<<<<<<<<<<< FUNCTIONS >>>>>>>>>>>>>>>>>>>>>
 
 // simulation.c
+void					begin_simulation(t_sim_data *sim);
 
 // routine.c
 void					*philo_routine(void *arg);
-void					run_simulation(t_sim_data *sim);
 
 // cleanup.c
 void					clear_simulation(t_sim_data *sim);
@@ -110,7 +111,7 @@ void					clear_simulation(t_sim_data *sim);
 int						validate_input(int argc, char **argv);
 
 // init.c
-t_sim_data				*init_sim_data(int argc, char **argv);
+t_sim_data				*init_simulation(int argc, char **argv);
 
 // libft_utils.c:
 size_t					ft_strlen(const char *s);
@@ -121,7 +122,7 @@ int						ft_atoi(const char *str);
 
 // utils.c
 long long				get_current_ms(void);
-void					print_status(t_philo *philo, char *status);
+void					print_philo_status(t_philo *philo, char *status);
 
 // testing.c
 void					print_simulation_state(t_sim_data *sim);
