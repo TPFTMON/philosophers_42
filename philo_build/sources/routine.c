@@ -6,49 +6,56 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:53:55 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/09 17:19:15 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/10 17:42:30 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+	/*
+	1. Take both forks (using the odd/even strategy).
+
+	2. Lock the personal meal_lock.
+
+	3. Update last_meal_time to the current time and increment meals_eaten.
+
+	4. Unlock the personal meal_lock.
+
+	5. Report "is eating" (using the print_mutex).
+
+	6. usleep for time_to_eat.
+
+	7. Release both forks.
+	*/
 void	eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->left_fork);
-	pthread_mutex_lock(&philo->right_fork);
-
-	print_philo_status(philo, EAT_MSG);
-	usleep(philo->sim->time_to_eat * 1000);
+	if (philo->id % 2 == 1)
+	{
+		pthread_mutex_lock(&philo->left_fork);
+		pthread_mutex_lock(&philo->right_fork);
+	}
+	else
+	{
+		pthread_mutex_lock(&philo->right_fork);
+		pthread_mutex_lock(&philo->left_fork);
+	}
 
 	pthread_mutex_lock(&philo->meal_mutex);
-	philo->last_meal_time =
+	philo->last_meal_time = TIME;
+	philo->meals_eaten++;
+
+	print_philo_status(philo, EAT_MSG);
+
+	usleep(philo->sim->time_to_eat * 1000);
 
 	pthread_mutex_unlock(&philo->left_fork);
 	pthread_mutex_unlock(&philo->right_fork);
 }
+
 void	sleep_and_think(t_philo *philo)
 {
 
 }
-
-void	philo_routine(void	*arg)
-{
-	t_philo	*philo;
-
-	philo = (t_philo *)arg;
-
-	while (1)
-	{
-		pthread_mutex_lock(&philo->sim->stop_mutex);
-		if (philo->sim->stop_flag)
-		{
-			pthread_mutex_unlock(&philo->sim->stop_mutex);
-			break ;
-		}
-		pthread_mutex_unlock(&philo->sim->stop_mutex);
-		eat(philo);
-		sleep_and_think(philo);
-	}
 
 	/*
 routine:
@@ -69,6 +76,24 @@ routine:
 		||
 		\/
 	*/
+void	philo_routine(void	*arg)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)arg;
+
+	while (1)
+	{
+		pthread_mutex_lock(&philo->sim->stop_mutex);
+		if (philo->sim->stop_flag)
+		{
+			pthread_mutex_unlock(&philo->sim->stop_mutex);
+			break ;
+		}
+		pthread_mutex_unlock(&philo->sim->stop_mutex);
+		eat(philo);
+		sleep_and_think(philo);
+	}
 }
 
 // void	*philo_routine(void	*arg)
