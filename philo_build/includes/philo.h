@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 07:13:44 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/09 17:14:38 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/12 21:47:50 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,15 @@
 # define EAT_MSG "is eating"
 # define SLEEP_MSG "is sleeping"
 # define THINK_MSG "is thinking"
-# define DEAD_MSG "died"
+# define DEAD_MSG "\e[1;31mdied\e[0m"
+// # define FULL_MSG "all phisolophers have eaten their times_must_eat"
 
 // --- Some Colors ---
-# define RESET "\033[0m"
-# define BOLD "\033[1m"
-# define GREEN "\033[32m"
-# define YELLOW "\033[33m"
-# define CYAN "\033[36m"
+# define RESET "\e[0m"
+# define BOLD "\e[1m"
+# define GREEN "\e[32m"
+# define YELLOW "\e[33m"
+# define CYAN "\e[36m"
 
 // <<<<<<<<<<<<<<<<<<<<< STRUCTURES >>>>>>>>>>>>>>>>>>>>>
 
@@ -89,7 +90,7 @@ typedef struct s_philo
 
 	pthread_t			thread;
 
-	pthread_mutex_t		meal_mutex;
+	pthread_mutex_t		personal_mutex;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
 
@@ -100,10 +101,10 @@ typedef struct s_philo
 
 // simulation.c
 void					begin_simulation(t_sim_data *sim);
+void					monitor_simulation(t_sim_data *sim);
 
 // routine.c
 void					*philo_routine(void *arg);
-
 // cleanup.c
 void					clear_simulation(t_sim_data *sim);
 
@@ -119,10 +120,13 @@ char					*ft_strjoin(char const *s1, char const *s2);
 int						print_error_with_code(char *object, char *msg,
 							int error_code);
 int						ft_atoi(const char *str);
+int						ft_strcmp(const char *s1, const char *s2);
 
 // utils.c
 long long				get_current_ms(void);
 void					print_philo_status(t_philo *philo, char *status);
+bool					is_philo_dead(t_philo *philo);
+bool					are_philos_full(t_sim_data *sim);
 
 // testing.c
 void					print_simulation_state(t_sim_data *sim);

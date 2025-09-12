@@ -1,3 +1,6 @@
 *.o
 objects
 philo
+philo.h.gch
+a.out
+

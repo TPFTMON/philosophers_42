@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 18:49:35 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/09 17:16:25 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/12 21:26:12 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_philos(t_sim_data *sim)
 	i = 0;
 	while (i < sim->num_of_philos)
 	{
-		pthread_mutex_init(&sim->philos[i].meal_mutex, NULL);
+		pthread_mutex_init(&sim->philos[i].personal_mutex, NULL);
 		pthread_mutex_init(&sim->forks[i], NULL);
 		sim->philos[i].id = i + 1;
 		sim->philos[i].last_meal_time = sim->start_time;

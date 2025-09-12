@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 08:45:02 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/03 11:19:06 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/12 21:47:35 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,18 @@ int	ft_atoi(const char *str)
 	while (str[index] >= '0' && str[index] <= '9')
 		result = result * 10 + (str[index++] - '0');
 	return (result * sign);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			break ;
+		i++;
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

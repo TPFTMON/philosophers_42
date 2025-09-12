@@ -6,11 +6,14 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 07:13:02 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/09 16:24:34 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/12 21:10:17 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+// void	begin_simulation(t_sim_data *sim);
+// void	monitor_simulation(t_sim_data *sim);
 
 int main(int argc, char **argv)
 {
@@ -34,18 +37,6 @@ int main(int argc, char **argv)
 	printf(BOLD"\e[4;32mReady to clean up!\e[0m\n");
 
 	clear_simulation(sim);
-	printf(BOLD"\e[4;32mSimulation has been cleaned up!\e[0m\n");
+	printf(BOLD"\e[4;32mSimulation has been cleared up!\e[0m\n");
 	return (0);
 }
-
-// int main() {
-//     struct timeval tv;
-//     if (gettimeofday(&tv, NULL) == -1) {
-//         printf("gettimeofday failed\n");
-//         return 1;
-//     }
-
-//     long milliseconds = (tv.tv_sec * 1000L) + (tv.tv_usec / 1000L);
-//     printf("Current time in ms: %ld\n", milliseconds);
-//     return 0;
-// }
