@@ -6,15 +6,11 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 18:49:35 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/14 04:28:10 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/15 01:38:41 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void		init_args(int argc, char **argv, t_sim_data *sim);
-void		init_philos(t_sim_data *sim);
-void		*free_forks_and_sim(t_sim_data *sim);
 
 t_sim_data	*init_simulation(int argc, char **argv)
 {

@@ -6,15 +6,11 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:53:55 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/15 00:28:34 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/15 01:42:00 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	eat_p(t_philo *philo, char *eat_message);
-void	take_forks(t_philo *philo);
-void	sleep_p(t_philo *philo);
 
 /*
 routine:

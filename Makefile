@@ -6,7 +6,7 @@
 #    By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/03 18:01:16 by abaryshe          #+#    #+#              #
-#    Updated: 2025/09/14 21:04:19 by abaryshe         ###   ########.fr        #
+#    Updated: 2025/09/15 01:44:31 by abaryshe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ INCLUDES = -I ${INC_DIR}
 
 #||||||||||||||||||||||||||||||
 #\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
-SRC_FILES = philo.c libft_utils.c parsing.c init.c cleanup.c utils.c routine.c simulation.c
+SRC_FILES = philo.c libft_utils.c init.c utils.c routine.c simulation.c
 
 SRCS = $(addprefix ${SRC_DIR}/, ${SRC_FILES})
 

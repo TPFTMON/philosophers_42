@@ -6,13 +6,11 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:11:18 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/14 23:17:10 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/15 01:39:27 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-bool	check_death(t_sim_data *sim);
 
 void	begin_simulation(t_sim_data *sim)
 {
