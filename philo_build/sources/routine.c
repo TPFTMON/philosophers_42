@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:53:55 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/14 04:28:25 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/15 00:28:34 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,6 @@ void	*philo_routine(void *arg)
 	return (NULL);
 }
 
-void	*single_philo_routine(void *arg)
-{
-	t_philo	*philo;
-
-	philo = (t_philo *)arg;
-	pthread_mutex_lock(philo->left_fork);
-	print_philo_status(philo, FORK_MSG);
-	ft_usleep(philo->sim->time_to_die, philo->sim);
-	pthread_mutex_unlock(philo->left_fork);
-	return (NULL);
-}
-
 /*
 1. Take both forks (using the odd/even strategy).
 
@@ -93,13 +81,13 @@ void	eat_p(t_philo *philo, char *eat_message)
 	ft_usleep(philo->sim->time_to_eat, philo->sim);
 	if (philo->id % 2 == 1)
 	{
-		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
+		pthread_mutex_unlock(philo->left_fork);
 	}
 	else
 	{
-		pthread_mutex_unlock(philo->right_fork);
 		pthread_mutex_unlock(philo->left_fork);
+		pthread_mutex_unlock(philo->right_fork);
 	}
 }
 
@@ -125,6 +113,18 @@ void	sleep_p(t_philo *philo)
 {
 	print_philo_status(philo, SLEEP_MSG);
 	ft_usleep(philo->sim->time_to_sleep, philo->sim);
+}
+
+void	*single_philo_routine(void *arg)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)arg;
+	pthread_mutex_lock(philo->left_fork);
+	print_philo_status(philo, FORK_MSG);
+	ft_usleep(philo->sim->time_to_die, philo->sim);
+	pthread_mutex_unlock(philo->left_fork);
+	return (NULL);
 }
 
 // void	take_forks(t_philo *philo)

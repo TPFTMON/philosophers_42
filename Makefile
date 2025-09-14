@@ -6,7 +6,7 @@
 #    By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/03 18:01:16 by abaryshe          #+#    #+#              #
-#    Updated: 2025/09/14 04:41:19 by abaryshe         ###   ########.fr        #
+#    Updated: 2025/09/14 21:04:19 by abaryshe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ FREM = rm -f
 CC = cc
 AR = ar rcs
 CMPFLAGS = -Wall -Wextra -Werror
-DBUG_FLAGS = ${CMPFLAGS} -g
+DBUG_FLAGS = ${CMPFLAGS} -g -fsanitize=address
 INCLUDES = -I ${INC_DIR}
 
 # --- Source Files ---
@@ -44,6 +44,9 @@ all: ${NAME}
 
 ${NAME}: ${OBJS}
 	${CC} ${CMPFLAGS} ${INCLUDES} ${OBJS} -o ${NAME}
+
+test: ${OBJS}
+	${CC} ${DBUG_FLAGS} ${INCLUDES} ${OBJS} -o ${NAME}
 
 #OBJS:
 ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c

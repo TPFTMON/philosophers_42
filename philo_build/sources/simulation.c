@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:11:18 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/14 04:38:47 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/14 23:17:10 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ void	monitor_simulation(t_sim_data *sim)
 		{
 			pthread_mutex_lock(&sim->stop_mutex);
 			sim->stop_flag = true;
+			pthread_mutex_unlock(&sim->stop_mutex);
 			pthread_mutex_lock(&sim->print_mutex);
 			printf("\e[1;32mAll philosophers have eaten their meal");
 			printf(" №\e[4;32m%d\e[0m\n", sim->times_must_eat);
 			pthread_mutex_unlock(&sim->print_mutex);
-			pthread_mutex_unlock(&sim->stop_mutex);
 			return ;
 		}
 		ft_usleep(1, sim);
@@ -76,8 +76,8 @@ bool	check_death(t_sim_data *sim)
 		{
 			pthread_mutex_lock(&sim->stop_mutex);
 			sim->stop_flag = true;
-			print_philo_status(&sim->philos[i], DEAD_MSG);
 			pthread_mutex_unlock(&sim->stop_mutex);
+			print_philo_status(&sim->philos[i], DEAD_MSG);
 			return (true);
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 21:19:45 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/14 04:29:03 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/15 01:17:53 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,18 @@ void	ft_usleep(long long ms, t_sim_data *sim)
 	long long	start;
 
 	start = get_current_ms();
-	while (!sim->stop_flag)
+	while (1)
 	{
+		pthread_mutex_lock(&sim->stop_mutex);
+		if (sim->stop_flag)
+		{
+			pthread_mutex_unlock(&sim->stop_mutex);
+			break ;
+		}
+		pthread_mutex_unlock(&sim->stop_mutex);
 		if (get_current_ms() - start >= ms)
 			break ;
-		usleep(100);
+		usleep(500);
 	}
 }
 
@@ -49,14 +56,20 @@ long long	get_current_ms(void)
 void	print_philo_status(t_philo *philo, char *status)
 {
 	long long	current_time;
+	bool		should_print;
 
-	pthread_mutex_lock(&philo->sim->print_mutex);
+	should_print = false;
+	pthread_mutex_lock(&philo->sim->stop_mutex);
 	if (!philo->sim->stop_flag || ft_strcmp(status, DEAD_MSG) == 0)
+		should_print = true;
+	pthread_mutex_unlock(&philo->sim->stop_mutex);
+	if (should_print)
 	{
 		current_time = get_current_ms() - philo->sim->start_time;
+		pthread_mutex_lock(&philo->sim->print_mutex);
 		printf("%lld %d %s\n", current_time, philo->id, status);
+		pthread_mutex_unlock(&philo->sim->print_mutex);
 	}
-	pthread_mutex_unlock(&philo->sim->print_mutex);
 }
 
 bool	is_philo_dead(t_philo *philo)
@@ -92,6 +105,40 @@ bool	are_philos_full(t_sim_data *sim)
 	}
 	return (true);
 }
+
+// void	ft_usleep(long long ms, t_sim_data *sim)
+// // {
+// long long	start;
+//
+// start = get_current_ms();
+// pthread_mutex_lock(&sim->stop_mutex);
+// while (!sim->stop_flag)
+// {
+// pthread_mutex_unlock(&sim->stop_mutex);
+// if (get_current_ms() - start >= ms)
+// return ;
+// usleep(100);
+// pthread_mutex_lock(&sim->stop_mutex);
+// }
+// pthread_mutex_unlock(&sim->stop_mutex);
+// }
+
+// void	print_philo_status(t_philo *philo, char *status)
+// {
+// 	long long	current_time;
+
+// 	pthread_mutex_lock(&philo->sim->stop_mutex);
+// 	if (!philo->sim->stop_flag || ft_strcmp(status, DEAD_MSG) == 0)
+// 	{
+// 		pthread_mutex_unlock(&philo->sim->stop_mutex);
+// 		current_time = get_current_ms() - philo->sim->start_time;
+// 		pthread_mutex_lock(&philo->sim->print_mutex);
+// 		printf("%lld %d %s\n", current_time, philo->id, status);
+// 		pthread_mutex_unlock(&philo->sim->print_mutex);
+// 		return ;
+// 	}
+// 	pthread_mutex_unlock(&philo->sim->stop_mutex);
+// }
 
 // int	main(void)
 // {
