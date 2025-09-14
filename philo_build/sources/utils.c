@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 21:19:45 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/14 02:49:31 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/14 04:29:03 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_usleep(long long ms, t_sim_data *sim)
 	{
 		if (get_current_ms() - start >= ms)
 			break ;
-		usleep(100); // sleep tiny chunk to avoid busy wait
+		usleep(100);
 	}
 }
 

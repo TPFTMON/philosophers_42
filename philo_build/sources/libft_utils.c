@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 08:45:02 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/12 21:47:35 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/14 04:38:19 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,21 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (merge);
 }
 
-/*
- * Prints an error message to STDERR.
+/**
+ * @brief Prints to STDERR "object: msg".
+ *
+ * This function prints an error message to STDERR.
  * If msg is NULL,
  * uses perror to print the system error associated with 'object'.
  * If object is NULL, prints only msg.
  * Otherwise, prints "object: msg".
  * And returns an error code given.
+ *
+ * @param object The parameter to refer to from where the error comes.
+ * Or to print assosiated perror.
+ * @param msg The error message to be printed.
+ * @param error_code The code to be returned after the print.
+ * @return void
  */
 int	print_error_with_code(char *object, char *msg, int error_code)
 {

@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:53:55 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/14 03:34:30 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/14 04:28:25 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,12 @@ void	*single_philo_routine(void *arg)
 void	eat_p(t_philo *philo, char *eat_message)
 {
 	take_forks(philo);
-
 	pthread_mutex_lock(&philo->personal_mutex);
 	philo->last_meal_time = get_current_ms();
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->personal_mutex);
-
 	print_philo_status(philo, eat_message);
 	ft_usleep(philo->sim->time_to_eat, philo->sim);
-
 	if (philo->id % 2 == 1)
 	{
 		pthread_mutex_unlock(philo->left_fork);

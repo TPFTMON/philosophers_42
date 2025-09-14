@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:11:18 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/14 03:28:27 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/14 04:38:47 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	monitor_simulation(t_sim_data *sim)
 			pthread_mutex_lock(&sim->stop_mutex);
 			sim->stop_flag = true;
 			pthread_mutex_lock(&sim->print_mutex);
-			printf("\e[1;32mAll philosophers have eaten their meal №\e[4;32m%d\e[0m\n",
-				sim->times_must_eat);
+			printf("\e[1;32mAll philosophers have eaten their meal");
+			printf(" №\e[4;32m%d\e[0m\n", sim->times_must_eat);
 			pthread_mutex_unlock(&sim->print_mutex);
 			pthread_mutex_unlock(&sim->stop_mutex);
 			return ;
@@ -109,7 +109,8 @@ bool	check_death(t_sim_data *sim)
 // 			pthread_mutex_lock(&sim->stop_mutex);
 // 			sim->stop_flag = true;
 // 			pthread_mutex_lock(&sim->print_mutex);
-// 			printf("\e[1;32mAll philosophers have eaten their meal №\e[4;32m%d\e[0m🥳",
+// 			printf("\e[1;32mAll philosophers
+// have eaten their meal №\e[4;32m%d\e[0m🥳",
 // 				sim->times_must_eat);
 // 			pthread_mutex_unlock(&sim->print_mutex);
 // 			pthread_mutex_unlock(&sim->stop_mutex);
