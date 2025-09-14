@@ -6,16 +6,15 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:53:55 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/14 02:00:44 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/14 03:34:30 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	eat_p(t_philo *philo);
+void	eat_p(t_philo *philo, char *eat_message);
 void	take_forks(t_philo *philo);
 void	sleep_p(t_philo *philo);
-void	think_p(t_philo *philo);
 
 /*
 routine:
@@ -33,8 +32,13 @@ while (1)
 void	*philo_routine(void *arg)
 {
 	t_philo	*philo;
+	char	*eat_message;
 
 	philo = (t_philo *)arg;
+	if (philo->sim->times_must_eat != -1)
+		eat_message = EAT_WIN_MSG;
+	else
+		eat_message = EAT_STANSART_MSG;
 	while (1)
 	{
 		pthread_mutex_lock(&philo->sim->stop_mutex);
@@ -44,10 +48,22 @@ void	*philo_routine(void *arg)
 			break ;
 		}
 		pthread_mutex_unlock(&philo->sim->stop_mutex);
-		eat_p(philo);
+		eat_p(philo, eat_message);
 		sleep_p(philo);
 		print_philo_status(philo, THINK_MSG);
 	}
+	return (NULL);
+}
+
+void	*single_philo_routine(void *arg)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)arg;
+	pthread_mutex_lock(philo->left_fork);
+	print_philo_status(philo, FORK_MSG);
+	ft_usleep(philo->sim->time_to_die, philo->sim);
+	pthread_mutex_unlock(philo->left_fork);
 	return (NULL);
 }
 
@@ -66,7 +82,7 @@ void	*philo_routine(void *arg)
 
 7. Release both forks.
 */
-void	eat_p(t_philo *philo)
+void	eat_p(t_philo *philo, char *eat_message)
 {
 	take_forks(philo);
 
@@ -75,7 +91,7 @@ void	eat_p(t_philo *philo)
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->personal_mutex);
 
-	print_philo_status(philo, EAT_MSG);
+	print_philo_status(philo, eat_message);
 	ft_usleep(philo->sim->time_to_eat, philo->sim);
 
 	if (philo->id % 2 == 1)

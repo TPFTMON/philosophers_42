@@ -6,12 +6,24 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 21:19:45 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/14 02:09:10 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/14 02:49:31 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/**
+ * @brief usleep but BETTER. (more precise)
+ *
+ * This function suspends execution of the calling thread
+ * FOR ms given.
+ * Uses sim to carefully track/check when to stop
+ * suspending. (In case of a philo's death/win)
+ *
+ * @param ms The milliseconds to suspend for.
+ * @param sim The main data struct.
+ * @return void
+ */
 void	ft_usleep(long long ms, t_sim_data *sim)
 {
 	long long	start;

@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 07:13:44 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/14 01:58:33 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/14 04:02:06 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,23 @@
 
 // --- Messages ---
 # define MSG_WRONG_AMNT_ARGS "\e[1;31mparsing error\e[0m: wrong number of arguments\n"
-# define MSG_USAGE_PHILO "\e[1;32m\nThe philo usage\e[0m:\n./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_must_eat]\n"
+# define MSG_USAGE_PHILO "\e[1;32m\nphilo usage\e[0m:\n./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_must_eat]\n"
+# define MSG_ARG_POSITIVE "\e[1;31mparsing error\e[0m: do not test with any argumet being zero or less\n"
+
+# define MSG_ARG_PHILO "\e[1;33mcritical warning\e[0m: do not test with more than 200 \e[1mphilosophers\e[0m\n"
+# define MSG_ARG_TIME "\e[1;33mcritical warning\e[0m: do not test with \e[1mtime_to_die\e[0m/\e[1mtime_to_eat\e[0m/\e[1mtime_to_sleep\e[0m being less than 20 ms\n"
 
 # define MSG_ERROR_MEM "\e[1;31mcritical error\e[0m: memory failure"
 # define MSG_ERROR_NO_TIME "\e[1;31mcritical error\e[0m: gettimeofday failed"
 
 //   status messages:
 # define FORK_MSG "has taken a fork"
-# define EAT_MSG "is eating"
+# define EAT_STANSART_MSG "is eating"
+# define EAT_WIN_MSG "\e[36mis eating\e[0m"
 # define SLEEP_MSG "is sleeping"
 # define THINK_MSG "is thinking"
 # define DEAD_MSG "\e[1;31mdied\e[0m"
-// # define FULL_MSG "all phisolophers have eaten their times_must_eat"
+// # define WIN_MSG "all phisolophers have eaten their times_must_eat"
 
 // --- Some Colors ---
 # define RESET "\e[0m"
@@ -105,7 +110,7 @@ void					monitor_simulation(t_sim_data *sim);
 
 // routine.c
 void					*philo_routine(void *arg);
-void					think_p(t_philo *philo);
+void					*single_philo_routine(void *arg);
 
 // cleanup.c
 void					clear_simulation(t_sim_data *sim);
