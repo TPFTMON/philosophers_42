@@ -6,14 +6,11 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 07:13:02 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/12 21:10:17 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/13 17:49:32 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-// void	begin_simulation(t_sim_data *sim);
-// void	monitor_simulation(t_sim_data *sim);
 
 int main(int argc, char **argv)
 {

@@ -6,12 +6,24 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 21:19:45 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/12 21:58:40 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/14 02:09:10 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../includes/philo.h"
 #include "philo.h"
+
+void	ft_usleep(long long ms, t_sim_data *sim)
+{
+	long long	start;
+
+	start = get_current_ms();
+	while (!sim->stop_flag)
+	{
+		if (get_current_ms() - start >= ms)
+			break ;
+		usleep(100); // sleep tiny chunk to avoid busy wait
+	}
+}
 
 long long	get_current_ms(void)
 {
@@ -37,12 +49,14 @@ void	print_philo_status(t_philo *philo, char *status)
 
 bool	is_philo_dead(t_philo *philo)
 {
-	long long	last_time_eaten;
+	long long	current_time;
+	long long	time_since_last_meal;
 
 	pthread_mutex_lock(&philo->personal_mutex);
-	last_time_eaten = philo->last_meal_time;
+	current_time = get_current_ms();
+	time_since_last_meal = current_time - philo->last_meal_time;
 	pthread_mutex_unlock(&philo->personal_mutex);
-	if (get_current_ms() - last_time_eaten >= philo->sim->time_to_die)
+	if (time_since_last_meal >= philo->sim->time_to_die)
 		return (true);
 	return (false);
 }

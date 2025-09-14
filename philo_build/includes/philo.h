@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 07:13:44 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/12 21:47:50 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/14 01:58:33 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ void					monitor_simulation(t_sim_data *sim);
 
 // routine.c
 void					*philo_routine(void *arg);
+void					think_p(t_philo *philo);
+
 // cleanup.c
 void					clear_simulation(t_sim_data *sim);
 
@@ -127,6 +129,7 @@ long long				get_current_ms(void);
 void					print_philo_status(t_philo *philo, char *status);
 bool					is_philo_dead(t_philo *philo);
 bool					are_philos_full(t_sim_data *sim);
+void					ft_usleep(long long ms, t_sim_data *sim);
 
 // testing.c
 void					print_simulation_state(t_sim_data *sim);

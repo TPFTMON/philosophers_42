@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 18:12:37 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/09 15:04:47 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/14 02:26:06 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	print_simulation_state(t_sim_data *sim)
 	else
 		printf(BOLD "Philosopher data not initialized.\n" RESET);
 }
-
+// ==========================================================================================================================
 // /*
 //  * Helper: safe fork-index retrieval.
 //  * Returns -1 if sim->forks is NULL or the pointer isn't inside that array.
