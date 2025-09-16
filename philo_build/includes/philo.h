@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 07:13:44 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/15 01:40:32 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/16 16:37:14 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,17 @@
 # define STDERR_FD 2
 
 // --- Messages ---
-# define MSG_WRONG_AMNT_ARGS \
-	"\e[1;31mparsing error\e[0m:\
+# define MSG_WRONG_AMNT_ARGS "\e[1;31mparsing error\e[0m:\
  wrong number of arguments\n"
-# define MSG_USAGE_PHILO \
-	"\e[1;32m\nphilo usage\e[0m:\n\
+# define MSG_USAGE_PHILO "\e[1;32m\nphilo usage\e[0m:\n\
 ./philo number_of_philosophers\
  time_to_die time_to_eat time_to_sleep [number_of_times_must_eat]\n"
-# define MSG_ARG_POSITIVE \
-	"\e[1;31mparsing error\e[0m:\
+# define MSG_ARG_POSITIVE "\e[1;31mparsing error\e[0m:\
  do not test with any argumet being zero or less\n"
 
-# define MSG_ARG_PHILO \
-	"\e[1;33mcritical warning\e[0m:\
+# define MSG_ARG_PHILO "\e[1;33mcritical warning\e[0m:\
  do not test with more than 200 \e[1mphilosophers\e[0m\n"
-# define MSG_ARG_TIME \
-	"\e[1;33mcritical warning\e[0m:\
+# define MSG_ARG_TIME "\e[1;33mcritical warning\e[0m:\
  do not test with \e[1mtime_to_die\e[0m/\
 \e[1mtime_to_eat\e[0m/\e[1mtime_to_sleep\e[0m being less than 60 ms\n"
 
@@ -80,7 +75,7 @@
 
 // <<<<<<<<<<<<<<<<<<<<< STRUCTURES >>>>>>>>>>>>>>>>>>>>>
 
-struct s_philo;
+struct	s_philo;
 
 typedef struct s_sim_data
 {
