@@ -6,7 +6,7 @@
 /*   By: abaryshe <abaryshe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:11:18 by abaryshe          #+#    #+#             */
-/*   Updated: 2025/09/15 01:39:27 by abaryshe         ###   ########.fr       */
+/*   Updated: 2025/09/16 11:14:18 by abaryshe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	monitor_simulation(t_sim_data *sim)
 			pthread_mutex_unlock(&sim->stop_mutex);
 			pthread_mutex_lock(&sim->print_mutex);
 			printf("\e[1;32mAll philosophers have eaten their meal");
-			printf(" №\e[4;32m%d\e[0m\n", sim->times_must_eat);
+			printf(" № \e[4;32m%d\e[0m\n", sim->times_must_eat);
 			pthread_mutex_unlock(&sim->print_mutex);
 			return ;
 		}
